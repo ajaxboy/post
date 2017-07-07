@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title '' %} - Twitter Silex Application</title>
+    <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
+</head>
+<body class="bg">
+
+<div style="position: relative; left:50%;width:500px; margin-left: -250px; top: 160px;">
+
+{% block content %}
+
+    {% if message %}
+        <div class="message">
+            {{ message }}
+        </div>
+    {% endif %}
+
+    Welcome to this Twitter clone test!. Here is some useful information:
+    <br >
+    <ol type="1">
+        <li>
+            Create a database with the name "twitter" and a user name "twitter" and password "password"
+        </li>
+        <li>
+            Use sql file 'sql/twitter.sql' located within the attached files to create tables structure.
+        </li>
+        <li>
+            Once the database is ready, proceed to login and test.
+            <br /><br />
+
+            Login Using credential <span style="font-weight: bold"> twitter / password</span> to login
+        </li>
+        <li>
+            Keep in mind that even though you will see a lot of links (as part of the theme), only the expected functionality is  functional.
+        </li>
+    </ol>
+
+
+    <hr />
+    <form action="/login"  method="post">
+        <div class="col">
+            <input id="signin-email" value="twitter" name="username" autocomplete="username" placeholder="Phone, email or username" type="text">
+        </div>
+
+        <div class="col">
+
+                <div>
+                    <input id="signin-password" value="" name="password" placeholder="Password" autocomplete="current-password" type="password">
+                </div>
+                <br />
+                <button type="submit" class="">
+                    Log in
+                </button>
+
+            </tbody>
+        </div>
+    </form>
+
+{% endblock %}
+
+</div>
+
+</body>
+</html>

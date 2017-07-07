@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title '' %} - Twitter Silex Application</title>
+        <link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css" />
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" type="text/javascript"></script>
+        <script src="{{ asset('js/main.js') }}" type="text/javascript"></script>
+    </head>
+    <body>
+
+
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-collapse navbar-collapse-1 collapse" aria-expanded="true">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#fake"><span class="glyphicon glyphicon-home"></span> Home</a>
+                    </li>
+                    <li>
+                        <a href="#fake"><span class="glyphicon glyphicon-bell"></span> Notifications</a>
+                    </li>
+                    <li>
+                        <a href="#fake"><span class="glyphicon glyphicon-envelope"></span> Messages</a>
+                    </li>
+                    <li>
+                        <a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Logout</a>
+                    </li>
+                </ul>
+                <div class="navbar-form navbar-right">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control-nav" style="padding-left: 8px;" id="search" aria-describedby="search1">
+                        <span class="glyphicon glyphicon-search form-control-feedback" aria-hidden="true" style="margin-top:-5px;"></span>
+                    </div>
+
+                    <button onclick="toggleBox();" class="btn btn-primary" type="submit" aria-label="Left Align">
+                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"> </span> Tweet
+                    </button>
+
+                    <div id="box" class="well clearfix" style="position:absolute; top: 30px;width: 400px; margin-left: -200px; display:none">
+                        <form>
+                            <textarea id="chars" name="chars" maxlength="139" onkeydown="countChars(this);" class="form-control" style="width: 85%"></textarea><br />
+                            <span id="count">0</span>
+                            <button id="tweet" class="btn btn-primary pull-right">Tweet</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="#">
+                            <img class="img-responsive" alt="" src="{{ asset('img/twitter.jpg') }}"></a>
+                        <div class="row">
+                            <div class="col-xs-3">
+                                <h5>
+                                    <small>TWEETS</small>
+                                    <a href="#">1,545</a>
+                                </h5>
+                            </div>
+                            <div class="col-xs-4">
+                                <h5>
+                                    <small>FOLLOWING</small>
+                                    <a href="#">251</a>
+                                </h5>
+                            </div>
+                            <div class="col-xs-5">
+                                <h5>
+                                    <small>FOLLOWERS</small>
+                                    <a href="#">153</a>
+                                </h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel panel-default panel-custom">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Trends
+                            <small><a href="#">ciao</a></small>
+                        </h3>
+                    </div>
+
+                    <div class="panel-body">
+                        <ul class="list-unstyled">
+                            <li><a href="#">#Silex</a></li>
+                            <li><a href="#">#Web Development</a></li>
+                            <li><a href="#">#4th of july</a></li>
+                            <li><a href="#">#Health Care</a></li>
+                            <li><a href="#">#G20 Submit</a></li>
+                            <li><a href="#">#Tupac Shakur</a></li>
+                            <li><a href="#">#GetLow</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="media">
+                            <a class="media-left" href="#fake">
+                                <img alt="" class="media-object img-rounded" src="{{ asset('img/twitter35.jpg') }}">
+                            </a>
+                            <div class="media-body">
+                                <div class="form-group has-feedback">
+                                    <label class="control-label sr-only" for="inputSuccess5">Hidden label</label>
+                                    <input type="text" class="form-control" id="search2" aria-describedby="search">
+                                    <span class="glyphicon glyphicon-camera form-control-feedback" aria-hidden="true"></span>
+                                    <span id="search2" class="sr-only">(success)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body tweets">
+                        {% for post in tweets %}
+                            <div class="media">
+                                <a class="media-left" href="#post">
+                                    <img alt="" class="media-object img-rounded" src="{{ asset('img/twitter64.jpg') }}">
+                                </a>
+                                <div class="media-body">
+                                    <h4 class="media-heading">@{{ post.handle  }} <span class="well-sm date">{{ post.stamp|date("M d")   }}</h4>
+                                    <p>{{ post.post }}</p>
+                                    <ul class="nav nav-pills nav-pills-custom">
+                                        <li><a href="#"><span class="glyphicon glyphicon-share-alt"></span></a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-retweet"></span></a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-star"></span></a></li>
+                                        <li><a href="#"><span class="glyphicon glyphicon-option-horizontal"></span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <br>
+                <br>
+                <br>
+
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Nav</div>
+                    <div class="panel-body">
+                        <ul class="nav nav-pills">
+                            <li role="presentation" class="active"><a href="#">Home</a></li>
+                            <li role="presentation"><a href="#">Profile</a></li>
+                            <li role="presentation"><a href="#">Messages</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="panel panel-default panel-custom">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            Who to follow
+                            <small><a href="#">Refresh</a> ● <a href="#">View all</a></small>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="{{ asset('img/ajax.png') }}" alt="" class="media-object img-rounded">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">AjaxFramework</h4>
+                                <a href="#" class="btn btn-default btn-xs">
+                                    +
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    Follow
+                                </a>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="{{ asset('img/php.jpg') }}" alt="" class="media-object img-rounded">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Official_php</h4>
+                                <a href="#" class="btn btn-default btn-xs">
+                                    +
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    Follow
+                                </a>
+                            </div>
+                        </div>
+                        <div class="media">
+                            <div class="media-left">
+                                <img src="{{ asset('img/sf.png') }}" alt="" class="media-object img-rounded">
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Symfony</h4>
+                                <a href="#" class="btn btn-default btn-xs">
+                                    +
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    Follow
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <a href="www.google.it">
+                            <span class="glyphicon glyphicon-user"></span>
+                            Find people you know
+                        </a>
+                    </div>
+                </div>
+                <div class="well well-sm">
+                    <ul class="list-inline">
+                        <li>© 2017 Twitter</li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">Ads info</a></li>
+                        <li><a href="#">Brand</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Status</a></li>
+                        <li><a href="#">Apps</a></li>
+                        <li><a href="#">Jobs</a></li>
+                        <li><a href="#">Advertise</a></li>
+                        <li><a href="#">Businesses</a></li>
+                        <li><a href="#">Media</a></li>
+                        <li><a href="#">Developers</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    {% block content %}{% endblock %}
+    </body>
+</html>
