@@ -1,4 +1,4 @@
-## Twitter Clone
+
 #### This is a twitter clone test built on Silex
 
 
