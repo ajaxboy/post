@@ -24,7 +24,7 @@ class Application extends SilexApplication
               WHERE u.userid = ?
               ORDER BY stamp DESC");
 
-        $qry->Execute(array($userid));
+        $qry->Execute([$userid]);
 
         return $qry->fetchAll(\PDO::FETCH_ASSOC);
     }
@@ -40,6 +40,6 @@ class Application extends SilexApplication
     {
         $qry = $this["pdo"]->prepare("INSERT INTO posts SET userid = ? , post = ? , stamp = ?");
 
-        return $qry->Execute(array($userid, $post, time()));
+        return $qry->Execute([$userid, $post, time()]);
     }
 }
