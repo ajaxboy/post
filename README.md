@@ -2,8 +2,7 @@
 #### This is a twitter clone test built on Silex
 
 
-The purpose of this twitter clone is to demonstrate the usage of Silex micro-framework
-generic use.
+The purpose of this twitter clone
  
 ##### Includes:
  
@@ -12,7 +11,7 @@ generic use.
  - Namespacing
  - Autoloading through composer (PSR 4)
  - Routings
- - Twitter theme
+ - theme
  
 ##### Functions that work
  - Posting tweets
