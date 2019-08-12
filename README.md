@@ -11,7 +11,7 @@ The purpose of this twitter clone
  - Namespacing
  - Autoloading through composer (PSR 4)
  - Routings
- - theme
+ - Theme
  
 ##### Functions that work
  - Posting tweets
