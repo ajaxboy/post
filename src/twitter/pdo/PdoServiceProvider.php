@@ -30,7 +30,7 @@ class PdoServiceProvider implements ServiceProviderInterface
                 $dsn,
                 $username = null,
                 $password = null,
-                array $options = array()
+                array $options = []
             ) use ($app) {
                 if ($app['debug'] && isset($app['monolog'])) {
                     $pdo = new PdoLog($dsn, $username, $password, $options);
@@ -66,10 +66,10 @@ class PdoServiceProvider implements ServiceProviderInterface
                     $app['pdo.options']
                 );
             };
-        $app['pdo.defaults'] = array(
+        $app['pdo.defaults'] = [
             'pdo.username' => null,
             'pdo.password' => null,
-            'pdo.options' => array()
-        );
+            'pdo.options' => []
+        ];
     }
 }
